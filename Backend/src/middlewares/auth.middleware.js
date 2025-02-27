@@ -59,6 +59,7 @@ const checkPermission = asyncHandler(async (req, res, next) => {
           })(path) && p.method === method
       );
       if (permission) {
+        req.user = userDecoded;
         next();
       } else {
         throw new ForbiddenException(
